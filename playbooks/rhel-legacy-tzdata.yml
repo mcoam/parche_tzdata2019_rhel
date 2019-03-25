@@ -1,0 +1,20 @@
+
+- hosts: all
+  gather_facts: False
+
+  tasks:
+
+  - name: RHEL Legacy -> Copy Santiago timezone file
+    local_action: "command scp files/Santiago2019 root@{{ inventory_hostname }}:/usr/share/zoneinfo/America/"
+  #  local_action: command ping -c 1 {{ inventory_hostname }}
+
+
+
+# - name: RHEL Legacy -> Gerate Symbolic link
+#   raw: ln -s /usr/share/zoneinfo/America/Santiago /etc/localtime
+#
+# - name: RHEL Legacy -> Check Time Zone
+#   shell: zdump -v /usr/share/zoneinfo/America/Santiago | grep 2019
+#   register: zdump_legacy
+#
+# - debug: var=zdump_legacy.stdout_lines

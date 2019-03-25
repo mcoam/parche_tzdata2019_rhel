@@ -1,0 +1,5 @@
+[dbservers]
+##
+centos5.example.com #ansible_host=10.10.10.31 
+#elk.example.com  ansible_host=10.10.10.20
+#centos6.example.com  ansible_host=10.10.10.32

@@ -1,0 +1,23 @@
+
+- name: RHEL7 -> Copia TZData
+  copy:
+    src: "{{ item }}"
+    dest: /tmp
+    owner: root
+  with_items:
+      - rpms/tzdata-java-2018i-1.el7.noarch.rpm
+      - rpms/tzdata-2018i-1.el7.noarch.rpm
+
+- name: RHEL7 -> Install TZData
+  yum:
+    name: "/tmp/{{ item }}"
+    state: present
+  with_items:
+      - tzdata-java-2018i-1.el7.noarch.rpm
+      - tzdata-2018i-1.el7.noarch.rpm
+
+- name: RHEL7 -> Check Time Zone
+  shell: zdump -v /usr/share/zoneinfo/America/Santiago | grep 2019
+  register: zdump_rhel7
+
+# - debug: var=zdump_rhel7.stdout_lines
